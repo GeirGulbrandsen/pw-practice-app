@@ -5,7 +5,7 @@ test.beforeEach(async ({page}) => {
 })
 
 
-test.describe.skip('firstTests', () => {
+test.describe('firstTests', () => {
 
   test.beforeEach(async ({page}) => {
     await page.getByText('Forms').click()

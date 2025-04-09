@@ -5,7 +5,7 @@ test.beforeEach(async ({page}) => {
 })
 
 
-test.describe.skip('Form Layouts page', () => {
+test.describe('Form Layouts page', () => {
   test.beforeEach(async ({page}) => {
     await page.getByTitle('Forms').click()
     await page.getByTitle('Form Layouts').click()
@@ -39,10 +39,12 @@ test.describe.skip('Form Layouts page', () => {
   })
 
   test('radio buttons', async ({page}) => {
-    const usingTheGridEmail: Locator = page.getByText('Using the Grid').locator('..').getByRole('radio',{name: 'Option 1'});
-    await expect(usingTheGridEmail).not.toBeChecked()
-    await usingTheGridEmail.check({force: true}) //For some reason this radio button is visibly hidden, and we need to use force to check it
-    await expect(usingTheGridEmail).toBeChecked()
+    const usingTheGridEmail: Locator = page.getByText('Using the Grid').locator('..')
+    const gridRadio: Locator = usingTheGridEmail.getByRole('radio',{name: 'Option 1'});
+    await expect(gridRadio).not.toBeChecked()
+    await gridRadio.check({force: true}) //For some reason this radio button is visibly hidden, and we need to use force to check it
+    // await expect(usingTheGridEmail).toHaveScreenshot()
+    await expect(gridRadio).toBeChecked()
   })
 
 })
